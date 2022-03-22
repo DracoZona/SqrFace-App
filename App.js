@@ -6,6 +6,7 @@ export default function App() {
   return (
     <SafeAreaView style={styles.root}>
       <SignInScreen />
+      <Text>Test</Text>
     </SafeAreaView>
   );
 }
