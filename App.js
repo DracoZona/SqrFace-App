@@ -1,12 +1,12 @@
 import React from "react";
 import { StyleSheet, Text, SafeAreaView } from "react-native";
-import SignInScreen from "./src/screens/SignInScreen";
 
+import Navigation from "./src/navigation";
 
 export default function App() {
   return (
     <SafeAreaView style={styles.root}>
-      <SignInScreen /> 
+      <Navigation /> 
     </SafeAreaView>
   );
 }

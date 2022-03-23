@@ -10,6 +10,8 @@ import React, { useState } from "react";
 import Logo from "../../../assets/images/Logo_1.png";
 import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
+import Navigation from "../../navigation";
+import { useNavigation } from "@react-navigation/native";
 
 const SignInScreen = () => {
   const [username, setUsername] = useState("");
@@ -17,8 +19,12 @@ const SignInScreen = () => {
 
   const { height } = useWindowDimensions();
 
+  const navigation = useNavigation();
+
   const onSignInPressed = () => {
     console.warn("Sign in");
+
+    navigation.navigate('SecondScreen') // DEBUGGING U CAN DELETE THIS
   };
   const onSignUpPressed = () => {
     console.warn("Sign Up");
