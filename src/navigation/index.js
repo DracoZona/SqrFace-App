@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import StartScreen from '../screens/StartScreen';
 import SignInScreen from '../screens/SignInScreen';
 import SecondScreen from '../screens/SecondScreen';
+import RegistrationMenu from '../screens/RegistrationMenu';
 
 
 const Stack = createNativeStackNavigator();
@@ -14,6 +15,7 @@ const Navigation = () => {
     <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
             <Stack.Screen name="StartScreen" component={StartScreen} />
+            <Stack.Screen name="RegistrationMenu" component={RegistrationMenu} />
             <Stack.Screen name="SignIn" component={SignInScreen} />
             <Stack.Screen name="SecondScreen" component={SecondScreen} />
         </Stack.Navigator>

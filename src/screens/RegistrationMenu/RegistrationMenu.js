@@ -15,18 +15,18 @@ import CustomButton from "../../components/CustomButton";
 import Navigation from "../../navigation";
 import { useNavigation } from "@react-navigation/native";
 import { styleProps } from "react-native-web/dist/cjs/modules/forwardedProps";
+import SignInScreen from "../SignInScreen";
 
-const StartScreen = () => {
+const RegistrationMenu = () => {
 
 
   const { height } = useWindowDimensions();
 
   const navigation = useNavigation();
-
-  const RegistrationMenu = () => {
-
-    navigation.navigate('RegistrationMenu') // DEBUGGING U CAN DELETE THIS
-  };
+  
+  const SignInScreen = () =>{
+    navigation.navigate('StartScreen')
+  }
 
   return (
     <ScrollView>
@@ -37,7 +37,7 @@ const StartScreen = () => {
           resizeMode="contain"
         />
 
-        <Text style={styles.h1}>Login as</Text>
+        <Text style={styles.h1}>Register as</Text>
         <TouchableOpacity style={styles.buttonStart}>
           <Text style={styles.buttonStartText}>Individual</Text>
         </TouchableOpacity>
@@ -48,9 +48,9 @@ const StartScreen = () => {
         
         <TouchableOpacity
           style= {styles.register}
-          onPress={RegistrationMenu}
+          onPress={SignInScreen}
         >
-          <Text>Don't have an account? Register.</Text>
+          <Text>Already have an account? Sign in.</Text>
         </TouchableOpacity>
   
         
@@ -100,4 +100,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default StartScreen;
+export default RegistrationMenu;
