@@ -12,6 +12,7 @@ import React, { useState } from "react";
 import Logo from "../../../assets/images/sqrlogo.png";
 import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
+import CustomNumberInput from "../../components/CustomNumberInput";
 import Navigation from "../../navigation";
 import { useNavigation } from "@react-navigation/native";
 import { styleProps } from "react-native-web/dist/cjs/modules/forwardedProps";
@@ -23,6 +24,8 @@ const RegIndividual = () => {
   const [FirstName, setFirstName] = useState("");
   const [MiddleName, setMiddleName] = useState("");
   const [LastName, setLastName] = useState("");
+  const [PhoneNumber, setPhoneNumber] = useState("");
+  const [Email, setEmail] = useState("");
 
 
   const { height } = useWindowDimensions();
@@ -166,6 +169,19 @@ const RegIndividual = () => {
           closeAfterSelecting={true}
         />
 
+        <CustomNumberInput
+          placeholder="Phone Number"
+          value={PhoneNumber}
+          setValue={setPhoneNumber}
+        />
+
+        <CustomInput
+          placeholder="Email"
+          value={Email}
+          setValue={setEmail}
+        />
+
+        
 
 
 
