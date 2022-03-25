@@ -17,7 +17,7 @@ import { useNavigation } from "@react-navigation/native";
 import { styleProps } from "react-native-web/dist/cjs/modules/forwardedProps";
 import SignInScreen from "../SignInScreen";
 import DropDownPicker from "react-native-dropdown-picker";
-import Constants from "../../Utils/constants";
+import Constants from "../../utils/constants";
 
 const RegIndividual = () => {
   const [FirstName, setFirstName] = useState("");
