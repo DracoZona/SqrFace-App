@@ -17,6 +17,7 @@ import { styleProps } from "react-native-web/dist/cjs/modules/forwardedProps";
 import SignInScreen from "../SignInScreen";
 import DropDownPicker from "react-native-dropdown-picker";
 import Constants from "../../utils/constants";
+import { ProgressSteps, ProgressStep } from "react-native-progress-steps";
 
 const RegEstablishment = () => {
   const { height } = useWindowDimensions();
@@ -69,83 +70,100 @@ const RegEstablishment = () => {
   };
 
   ////////////////////////////////////////////////
+
+
   return (
-    <ScrollView>
-      <View style={styles.root}>
-        <Image
-          source={Logo}
-          style={[styles.logo, { height: height * 0.3 }]}
-          resizeMode="contain"
-        />
+  
+      
+      <ScrollView>
 
-        <Text style={styles.h1}>Registration Form</Text>
-        <Text style={styles.h2}>Please fill up the form.</Text>
-        <CustomInput
-          placeholder="Establishment Name"
-          value={valueEstablishmentName}
-          setValue={setEstablishmentName}
-        />
-        <CustomInput
-          placeholder="Business Permit"
-          value={valueBusinessPermit}
-          setValue={setBusinessPermit}
-        />
-        <Text style={styles.textBold}>Establishment Type:</Text>
-        <DropDownPicker
-          placeholderStyle={{
-            color: "grey",
-            fontWeight: "bold",
-          }}
-          searchable={true}
-          placeholder="Establishment Type"
-          open={openEstablishmentType}
-          value={valueEstablishmentType}
-          items={establishmentTypeOptions}
-          setOpen={setOpenEstablishmentType}
-          setValue={setValueEstablishmentType}
-          listMode="SCROLLVIEW"
-          style={styles.dropDown}
-          closeAfterSelecting={true}
-        />
-        <Text style={styles.textBold}>Barangay:</Text>
+        
+          <View style={styles.root}>
+            <Image
+              source={Logo}
+              style={[styles.logo, { height: height * 0.3 }]}
+              resizeMode="contain"
+            />
 
-        <DropDownPicker
-          placeholderStyle={{
-            color: "grey",
-            fontWeight: "bold",
-          }}
-          searchable={true}
-          placeholder="Barangay"
-          open={openEstablishmentBarangay}
-          value={valueEstablishmentBarangay}
-          items={establishmentBarangayOptions}
-          setOpen={setOpenEstablishmentBarangay}
-          setValue={setValueEstablishmentBarangay}
-          listMode="SCROLLVIEW"
-          style={styles.dropDown}
-          closeAfterSelecting={true}
-        />
+            <Text style={styles.h1}>Registration Form</Text>
+            <Text style={styles.h2}>Please fill up the form.</Text>
+            <ProgressSteps >
+      <ProgressStep label="Establishment Information" nextBtnTextStyle={styles.nxtBtn}>
+            
 
-        <CustomInput
-          placeholder="Complete Address"
-          value={valueEstablishmentAddress}
-          setValue={setEstablishmentAddress}
-        />
+            <CustomInput
+              placeholder="Establishment Name"
+              value={valueEstablishmentName}
+              setValue={setEstablishmentName}
+            />
+            <CustomInput
+              placeholder="Business Permit"
+              value={valueBusinessPermit}
+              setValue={setBusinessPermit}
+            />
+            <Text style={styles.textBold}>Establishment Type:</Text>
+            <DropDownPicker
+              placeholderStyle={{
+                color: "grey",
+                fontWeight: "bold",
+              }}
+              searchable={true}
+              placeholder="Establishment Type"
+              open={openEstablishmentType}
+              value={valueEstablishmentType}
+              items={establishmentTypeOptions}
+              setOpen={setOpenEstablishmentType}
+              setValue={setValueEstablishmentType}
+              listMode="SCROLLVIEW"
+              style={styles.dropDown}
+              closeAfterSelecting={true}
+            />
+            <Text style={styles.textBold}>Barangay:</Text>
 
-        <Text style={styles.textBold}>
-          Please check for the following errors:
-        </Text>
+            <DropDownPicker
+              placeholderStyle={{
+                color: "grey",
+                fontWeight: "bold",
+              }}
+              searchable={true}
+              placeholder="Barangay"
+              open={openEstablishmentBarangay}
+              value={valueEstablishmentBarangay}
+              items={establishmentBarangayOptions}
+              setOpen={setOpenEstablishmentBarangay}
+              setValue={setValueEstablishmentBarangay}
+              listMode="SCROLLVIEW"
+              style={styles.dropDown}
+              closeAfterSelecting={true}
+            />
 
-        <Text style={styles.note}>
-          <Text>- Please enter valid name {"\n"}</Text>
-          <Text>- Complete address is required {"\n"}</Text>
-          <Text>- Barangay is required</Text>
-        </Text>
+            <CustomInput
+              placeholder="Complete Address"
+              value={valueEstablishmentAddress}
+              setValue={setEstablishmentAddress}
+            />
 
+            <Text style={styles.textBold}>
+              Please check for the following errors:
+            </Text>
 
-        <CustomButton text="Next" onPress={onNextPagePressed} type="NEXT" />
+            <Text style={styles.note}>
+              <Text>- Please enter valid name {"\n"}</Text>
+              <Text>- Complete address is required {"\n"}</Text>
+              <Text>- Barangay is required</Text>
+            </Text>
+            </ProgressStep>
+      <ProgressStep label="Contact Person's info" nextBtnTextStyle={styles.nxtBtn}>
+        <Text>TBA</Text>
+      </ProgressStep>
+      <ProgressStep label="Login details" nextBtnTextStyle={styles.nxtBtn}>
+        <Text>TBA</Text>
+      </ProgressStep>
+    </ProgressSteps>
+          </View>
+        
+      
 
-      </View>
     </ScrollView>
   );
 };
@@ -155,7 +173,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 20,
     minHeight: 500,
-    marginBottom: 528,
+    marginBottom: 18,
   },
   logo: {
     marginTop: 40,
@@ -212,6 +230,21 @@ const styles = StyleSheet.create({
   register: {
     marginTop: 20,
   },
+  nxtBtn: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 40,
+    elevation: 3,
+    backgroundColor: '#3f6499',
+    padding: 15,
+    marginVertical: 5,
+    alignItems: "center",
+    fontWeight: "bold",
+    color: "white",
+    fontSize: 15,
+  }
 });
 
 export default RegEstablishment;
