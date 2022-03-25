@@ -28,6 +28,16 @@ const styles = StyleSheet.create({
 
   container_TERTIARY: {},
 
+  container_NEXT: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 40,
+    elevation: 3,
+    backgroundColor: '#3f6499',
+  },
+
   text: {
     fontWeight: "bold",
     color: "white",

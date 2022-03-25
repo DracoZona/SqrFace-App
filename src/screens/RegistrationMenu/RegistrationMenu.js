@@ -28,6 +28,14 @@ const RegistrationMenu = () => {
     navigation.navigate('StartScreen')
   }
 
+  const RegIndividual = () =>{
+    navigation.navigate('RegIndividual')
+  }
+
+  const RegEstablishment = () =>{
+    navigation.navigate('RegEstablishment')
+  }
+
   return (
     <ScrollView>
       <View style={styles.root}>
@@ -38,11 +46,11 @@ const RegistrationMenu = () => {
         />
 
         <Text style={styles.h1}>Register as</Text>
-        <TouchableOpacity style={styles.buttonStart}>
+        <TouchableOpacity style={styles.buttonStart} onPress={RegIndividual}>
           <Text style={styles.buttonStartText}>Individual</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.buttonStart}>
+        <TouchableOpacity style={styles.buttonStart} onPress={RegEstablishment}>
           <Text style={styles.buttonStartText}>Establishment</Text>
         </TouchableOpacity>
         

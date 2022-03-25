@@ -1,1 +1,1 @@
-export {default} from './RegistrationMenu';
+export {default} from './RegistrationMenu'; 
