@@ -73,23 +73,22 @@ const RegEstablishment = () => {
 
 
   return (
-  
-      
-      <ScrollView>
 
-        
-          <View style={styles.root}>
-            <Image
-              source={Logo}
-              style={[styles.logo, { height: height * 0.3 }]}
-              resizeMode="contain"
-            />
 
-            <Text style={styles.h1}>Registration Form</Text>
-            <Text style={styles.h2}>Please fill up the form.</Text>
-            <ProgressSteps >
-      <ProgressStep label="Establishment Information" nextBtnTextStyle={styles.nxtBtn}>
-            
+    <ScrollView>
+
+
+      <View style={styles.root}>
+        <Image
+          source={Logo}
+          style={[styles.logo, { height: height * 0.3 }]}
+          resizeMode="contain"
+        />
+
+        <Text style={styles.h1}>Registration Form</Text>
+        <Text style={styles.h2}>Please fill up the form.</Text>
+        <ProgressSteps>
+          <ProgressStep label="Establishment Information" nextBtnTextStyle={styles.nxtBtn}>
 
             <CustomInput
               placeholder="Establishment Name"
@@ -152,17 +151,19 @@ const RegEstablishment = () => {
               <Text>- Complete address is required {"\n"}</Text>
               <Text>- Barangay is required</Text>
             </Text>
-            </ProgressStep>
-      <ProgressStep label="Contact Person's info" nextBtnTextStyle={styles.nxtBtn}>
-        <Text>TBA</Text>
-      </ProgressStep>
-      <ProgressStep label="Login details" nextBtnTextStyle={styles.nxtBtn}>
-        <Text>TBA</Text>
-      </ProgressStep>
-    </ProgressSteps>
-          </View>
-        
-      
+          </ProgressStep>
+
+          <ProgressStep label="Contact Person's info" nextBtnTextStyle={styles.nxtBtn} previousBtnTextStyle={styles.prevBtn}>
+            <Text>TBA</Text>
+          </ProgressStep>
+
+          <ProgressStep label="Login details" nextBtnTextStyle={styles.nxtBtn} previousBtnTextStyle={styles.prevBtn}>
+            <Text>TBA</Text>
+          </ProgressStep>
+        </ProgressSteps>
+      </View>
+
+
 
     </ScrollView>
   );
@@ -231,20 +232,33 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   nxtBtn: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'flex-end',
+    marginRight: -50,
+    marginVertical: -20,
     paddingVertical: 12,
     paddingHorizontal: 32,
     borderRadius: 40,
     elevation: 3,
     backgroundColor: '#3f6499',
     padding: 15,
-    marginVertical: 5,
-    alignItems: "center",
     fontWeight: "bold",
     color: "white",
     fontSize: 15,
-  }
+  },
+  prevBtn: {
+    alignItems: 'flex-start',
+    marginLeft: -50,
+    marginVertical: -20,
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 40,
+    elevation: 3,
+    backgroundColor: '#3f6499',
+    padding: 15,
+    fontWeight: "bold",
+    color: "white",
+    fontSize: 15,
+  },
 });
 
 export default RegEstablishment;
