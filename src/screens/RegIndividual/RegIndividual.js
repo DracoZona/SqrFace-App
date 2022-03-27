@@ -6,7 +6,7 @@ import {
   useWindowDimensions,
   ScrollView,
   TouchableOpacity,
-  Button
+  Button,
 } from "react-native";
 import React, { useState } from "react";
 import Logo from "../../../assets/images/sqrlogo.png";
@@ -28,13 +28,11 @@ const RegIndividual = () => {
   const [PhoneNumber, setPhoneNumber] = useState("");
   const [Email, setEmail] = useState("");
 
-
   const { height } = useWindowDimensions();
 
   // Dropdown for Gender Selection
   const [openGender, setOpenGender] = useState(false);
   const [valueGender, setValueGender] = useState(null);
-
 
   // Dropdown for MONTH DOB
   const [openMonth, setOpenMonth] = useState(false);
@@ -48,29 +46,25 @@ const RegIndividual = () => {
   const [openYear, setOpenYear] = useState(false);
   const [valueYear, setValueYear] = useState(null);
 
-
   const monthOptions = Constants.DOB_MONTH.map((v) => ({
     label: v,
-    value: v
-
-  }))
+    value: v,
+  }));
 
   const genderOptions = Constants.GENDER.map((v) => ({
     label: v,
-    value: v
-  }))
+    value: v,
+  }));
 
   const dayOptions = Constants.DOB_DAY.map((v) => ({
     label: v,
-    value: v
-  }))
+    value: v,
+  }));
 
   const yearOptions = Constants.DOB_YEAR.map((v) => ({
     label: v,
-    value: v
-  }))
-
-
+    value: v,
+  }));
 
   // User Interface
   return (
@@ -85,7 +79,11 @@ const RegIndividual = () => {
         <Text style={styles.h1}>Registration Form</Text>
         <Text style={styles.h2}>Please fill up the form.</Text>
         <ProgressSteps>
-          <ProgressStep label="Personal Information" nextBtnTextStyle={styles.nxtBtn}>
+          <ProgressStep
+            label="Personal Information"
+            nextBtnTextStyle={styles.btnText}
+            nextBtnStyle={styles.nxtBtn}
+          >
             <CustomInput
               placeholder="First Name"
               value={FirstName}
@@ -117,9 +115,7 @@ const RegIndividual = () => {
               style={styles.dropDown}
               closeAfterSelecting={true}
             />
-            <Text style={styles.dob}>
-              Date of Birth:
-            </Text>
+            <Text style={styles.dob}>Date of Birth:</Text>
 
             <DropDownPicker
               placeholderStyle={{
@@ -184,11 +180,23 @@ const RegIndividual = () => {
               setValue={setEmail}
             />
           </ProgressStep>
-          <ProgressStep label="Contact Person's info" nextBtnTextStyle={styles.nxtBtn} previousBtnTextStyle={styles.prevBtn}>
+          <ProgressStep
+            label="Contact Person's info"
+            nextBtnTextStyle={styles.btnText}
+            nextBtnStyle={styles.nxtBtn}
+            previousBtnTextStyle={styles.btnText}
+            previousBtnStyle={styles.prevBtn}
+          >
             <Text>TBA</Text>
           </ProgressStep>
 
-          <ProgressStep label="Login details" nextBtnTextStyle={styles.nxtBtn} previousBtnTextStyle={styles.prevBtn}>
+          <ProgressStep
+            label="Login details"
+            nextBtnTextStyle={styles.btnText}
+            nextBtnStyle={styles.nxtBtn}
+            previousBtnTextStyle={styles.btnText}
+            previousBtnStyle={styles.prevBtn}
+          >
             <Text>TBA</Text>
           </ProgressStep>
         </ProgressSteps>
@@ -216,29 +224,28 @@ const styles = StyleSheet.create({
   },
 
   buttonStart: {
-    width: '80%',
+    width: "80%",
     marginTop: 20,
     paddingTop: 20,
     paddingBottom: 20,
-    backgroundColor: '#FFF',
+    backgroundColor: "#FFF",
     borderRadius: 150,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderColor: '#C0C0C0',
+    justifyContent: "center",
+    alignItems: "center",
+    borderColor: "#C0C0C0",
     borderWidth: 3,
   },
 
   buttonStartText: {
     fontSize: 24,
-    fontWeight: 'bold'
+    fontWeight: "bold",
   },
 
   dob: {
-    alignSelf: 'flex-start',
+    alignSelf: "flex-start",
     marginTop: 10,
     fontSize: 14,
-    fontWeight: 'bold',
-
+    fontWeight: "bold",
   },
 
   h1: {
@@ -248,44 +255,40 @@ const styles = StyleSheet.create({
 
   h2: {
     fontSize: 16,
-    fontStyle: 'italic',
+    fontStyle: "italic",
     marginBottom: 20,
   },
 
   register: {
     marginTop: 20,
   },
-
+  btnText: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 15,
+  },
   nxtBtn: {
-    alignItems: 'flex-end',
+    alignItems: "flex-end",
     marginRight: -50,
     marginVertical: -20,
     paddingVertical: 12,
     paddingHorizontal: 32,
     borderRadius: 40,
     elevation: 3,
-    backgroundColor: '#3f6499',
+    backgroundColor: "#3f6499",
     padding: 15,
-    fontWeight: "bold",
-    color: "white",
-    fontSize: 15,
   },
   prevBtn: {
-    alignItems: 'flex-start',
+    alignItems: "flex-start",
     marginLeft: -50,
     marginVertical: -20,
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 40,
     elevation: 3,
-    backgroundColor: '#3f6499',
+    backgroundColor: "#3f6499",
     padding: 15,
-    fontWeight: "bold",
-    color: "white",
-    fontSize: 15,
   },
-
 });
-
 
 export default RegIndividual;

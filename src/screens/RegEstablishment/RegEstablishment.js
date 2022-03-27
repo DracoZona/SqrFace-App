@@ -18,6 +18,7 @@ import SignInScreen from "../SignInScreen";
 import DropDownPicker from "react-native-dropdown-picker";
 import Constants from "../../utils/constants";
 import { ProgressSteps, ProgressStep } from "react-native-progress-steps";
+import { color } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 
 const RegEstablishment = () => {
   const { height } = useWindowDimensions();
@@ -62,22 +63,13 @@ const RegEstablishment = () => {
     })
   );
 
-  // Next page Button
-  const onNextPagePressed = () => {
-    console.warn("Next Page");
-
-    // navigation.navigate('SecondScreen') // DEBUGGING U CAN DELETE THIS
+  /////////// Progress Buttons //////////
+  const onNextStep = () => {
+    console.log("called next step");
   };
-
-  ////////////////////////////////////////////////
-
-
+  /////////////////////////////////////
   return (
-
-
     <ScrollView>
-
-
       <View style={styles.root}>
         <Image
           source={Logo}
@@ -88,8 +80,12 @@ const RegEstablishment = () => {
         <Text style={styles.h1}>Registration Form</Text>
         <Text style={styles.h2}>Please fill up the form.</Text>
         <ProgressSteps>
-          <ProgressStep label="Establishment Information" nextBtnTextStyle={styles.nxtBtn}>
-
+          <ProgressStep
+            label="Establishment Information"
+            nextBtnTextStyle={styles.btnText}
+            nextBtnStyle={styles.nxtBtn}
+            onNext={onNextStep}
+          >
             <CustomInput
               placeholder="Establishment Name"
               value={valueEstablishmentName}
@@ -153,18 +149,27 @@ const RegEstablishment = () => {
             </Text>
           </ProgressStep>
 
-          <ProgressStep label="Contact Person's info" nextBtnTextStyle={styles.nxtBtn} previousBtnTextStyle={styles.prevBtn}>
+          <ProgressStep
+            label="Contact Person's info"
+            nextBtnTextStyle={styles.btnText}
+            nextBtnStyle={styles.nxtBtn}
+            previousBtnTextStyle={styles.btnText}
+            previousBtnStyle={styles.prevBtn}
+          >
             <Text>TBA</Text>
           </ProgressStep>
 
-          <ProgressStep label="Login details" nextBtnTextStyle={styles.nxtBtn} previousBtnTextStyle={styles.prevBtn}>
+          <ProgressStep
+            label="Login details"
+            nextBtnTextStyle={styles.btnText}
+            nextBtnStyle={styles.nxtBtn}
+            previousBtnTextStyle={styles.btnText}
+            previousBtnStyle={styles.prevBtn}
+          >
             <Text>TBA</Text>
           </ProgressStep>
         </ProgressSteps>
       </View>
-
-
-
     </ScrollView>
   );
 };
@@ -174,7 +179,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 20,
     minHeight: 500,
-    marginBottom: 18,
+    marginBottom: 28,
   },
   logo: {
     marginTop: 40,
@@ -231,33 +236,32 @@ const styles = StyleSheet.create({
   register: {
     marginTop: 20,
   },
+  btnText: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 15,
+  },
   nxtBtn: {
-    alignItems: 'flex-end',
+    alignItems: "flex-end",
     marginRight: -50,
     marginVertical: -20,
     paddingVertical: 12,
     paddingHorizontal: 32,
     borderRadius: 40,
     elevation: 3,
-    backgroundColor: '#3f6499',
+    backgroundColor: "#3f6499",
     padding: 15,
-    fontWeight: "bold",
-    color: "white",
-    fontSize: 15,
   },
   prevBtn: {
-    alignItems: 'flex-start',
+    alignItems: "flex-start",
     marginLeft: -50,
     marginVertical: -20,
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 40,
     elevation: 3,
-    backgroundColor: '#3f6499',
+    backgroundColor: "#3f6499",
     padding: 15,
-    fontWeight: "bold",
-    color: "white",
-    fontSize: 15,
   },
 });
 
