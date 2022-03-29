@@ -27,6 +27,7 @@ const RegIndividual = () => {
   const [LastName, setLastName] = useState("");
   const [PhoneNumber, setPhoneNumber] = useState("");
   const [Email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
 
   const { height } = useWindowDimensions();
 
@@ -174,10 +175,17 @@ const RegIndividual = () => {
               setValue={setPhoneNumber}
             />
 
+            <Text style={styles.h3}>Account Information</Text>
             <CustomInput
               placeholder="Email"
               value={Email}
               setValue={setEmail}
+            />
+            <CustomInput
+              placeholder="Password"
+              secureTextEntry={true}
+              value={Password}
+              setValue={setPassword}
             />
           </ProgressStep>
           <ProgressStep
@@ -257,6 +265,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontStyle: "italic",
     marginBottom: 20,
+  },
+
+  h3: {
+    fontSize: 16,
+    fontStyle: "italic",
+    marginTop: 20,
   },
 
   register: {
