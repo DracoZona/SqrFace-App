@@ -6,7 +6,7 @@ import {
   useWindowDimensions,
   ScrollView,
   TouchableOpacity,
-  Button
+  Button,
 } from "react-native";
 import React, { useState } from "react";
 import Logo from "../../../assets/images/Logo_1.png";
@@ -17,15 +17,16 @@ import { useNavigation } from "@react-navigation/native";
 import { styleProps } from "react-native-web/dist/cjs/modules/forwardedProps";
 
 const StartScreen = () => {
-
-
   const { height } = useWindowDimensions();
 
   const navigation = useNavigation();
 
   const RegistrationMenu = () => {
+    navigation.navigate("RegistrationMenu"); // DEBUGGING U CAN DELETE THIS
+  };
 
-    navigation.navigate('RegistrationMenu') // DEBUGGING U CAN DELETE THIS
+  const FaceDetectScreen = () => {
+    navigation.navigate("FaceDetectScreen"); // DEBUGGING U CAN DELETE THIS
   };
 
   return (
@@ -42,18 +43,13 @@ const StartScreen = () => {
           <Text style={styles.buttonStartText}>Individual</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.buttonStart}>
+        <TouchableOpacity style={styles.buttonStart} onPress={FaceDetectScreen}>
           <Text style={styles.buttonStartText}>Establishment</Text>
         </TouchableOpacity>
-        
-        <TouchableOpacity
-          style= {styles.register}
-          onPress={RegistrationMenu}
-        >
+
+        <TouchableOpacity style={styles.register} onPress={RegistrationMenu}>
           <Text>Don't have an account? Register.</Text>
         </TouchableOpacity>
-  
-        
       </View>
     </ScrollView>
   );
@@ -72,21 +68,21 @@ const styles = StyleSheet.create({
   },
 
   buttonStart: {
-    width: '80%',
+    width: "80%",
     marginTop: 20,
     paddingTop: 20,
     paddingBottom: 20,
-    backgroundColor: '#FFF',
+    backgroundColor: "#FFF",
     borderRadius: 150,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderColor: '#C0C0C0',
+    justifyContent: "center",
+    alignItems: "center",
+    borderColor: "#C0C0C0",
     borderWidth: 3,
   },
 
   buttonStartText: {
     fontSize: 24,
-    fontWeight: 'bold'
+    fontWeight: "bold",
   },
 
   h1: {
@@ -96,8 +92,7 @@ const styles = StyleSheet.create({
 
   register: {
     marginTop: 20,
-  }
+  },
 });
-
 
 export default StartScreen;

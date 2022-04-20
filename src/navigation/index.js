@@ -8,6 +8,7 @@ import SecondScreen from '../screens/SecondScreen';
 import RegistrationMenu from '../screens/RegistrationMenu';
 import RegIndividual from '../screens/RegIndividual';
 import RegEstablishment from '../screens/RegEstablishment';
+import FaceDetectScreen from '../screens/FaceDetectScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -17,6 +18,7 @@ const Navigation = () => {
     <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
             <Stack.Screen name="StartScreen" component={StartScreen} />
+            <Stack.Screen name ="FaceDetectScreen" component={FaceDetectScreen}/>
             <Stack.Screen name="RegistrationMenu" component={RegistrationMenu} />
             <Stack.Screen name="RegIndividual" component={RegIndividual} />
             <Stack.Screen name="RegEstablishment" component={RegEstablishment} />
