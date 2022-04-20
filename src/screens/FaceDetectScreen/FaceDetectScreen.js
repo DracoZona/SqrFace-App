@@ -74,14 +74,6 @@ const FaceDetectScreen = () => {
                 }}
               />
 
-              <Button
-                style={styles.buttonStart}
-                title="Enroll Cute Face"
-                onPress={() => {
-                  takePicture()
-                }}
-              />
-
               {image && <Image source={{ uri: image }} style={{ flex: 1 }} />}
             </View>
       </View>
