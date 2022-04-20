@@ -21,6 +21,7 @@ import DropDownPicker from "react-native-dropdown-picker";
 import Constants from "../../utils/constants";
 import { ProgressSteps, ProgressStep } from "react-native-progress-steps";
 import { Camera } from 'expo-camera';
+import * as Permissions from "expo-permissions";
 
 const RegIndividual = () => {
   const [FirstName, setFirstName] = useState("");
@@ -78,7 +79,8 @@ const RegIndividual = () => {
 
   useEffect(() => {
     (async () => {
-      const cameraStatus = await Camera.requestMicrophonePermissionsAsync();
+      // const cameraStatus = await Camera.requestMicrophonePermissionsAsync();
+      const { cameraStatus } = await Permissions.askAsync(Permissions.CAMERA);
       sethasCameraPermission(cameraStatus.status === 'granted');
     })();
   }, []);
