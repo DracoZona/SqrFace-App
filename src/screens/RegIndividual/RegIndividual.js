@@ -207,18 +207,7 @@ const RegIndividual = () => {
               setValue={setPhoneNumber}
             />
 
-            <Text style={styles.h3}>Account Information</Text>
-            <CustomInput
-              placeholder="Email"
-              value={Email}
-              setValue={setEmail}
-            />
-            <CustomInput
-              placeholder="Password"
-              secureTextEntry={true}
-              value={Password}
-              setValue={setPassword}
-            />
+
           </ProgressStep>
           <ProgressStep
             label="Facial Recognition Enrollment"
@@ -262,7 +251,18 @@ const RegIndividual = () => {
             previousBtnTextStyle={styles.btnText}
             previousBtnStyle={styles.prevBtn}
           >
-            <Text>TBA</Text>
+            <Text style={styles.h3}>Account Information</Text>
+            <CustomInput
+              placeholder="Email"
+              value={Email}
+              setValue={setEmail}
+            />
+            <CustomInput
+              placeholder="Password"
+              secureTextEntry={true}
+              value={Password}
+              setValue={setPassword}
+            />
           </ProgressStep>
         </ProgressSteps>
       </View>
