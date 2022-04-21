@@ -397,6 +397,14 @@ class Constants {
         "1900"
     ]
 
+    static PROVINCE = [
+        "Davao Del Sur",
+        "Davao Del Norte",
+        "Davao Oriental",
+        "Davao Occidental",
+        "Compostella Valley",
+    ]
+
 }
 
 

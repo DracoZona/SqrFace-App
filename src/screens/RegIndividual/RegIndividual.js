@@ -24,6 +24,8 @@ import { Camera } from 'expo-camera';
 import * as Permissions from "expo-permissions";
 
 const RegIndividual = () => {
+
+  //basic information data
   const [FirstName, setFirstName] = useState("");
   const [MiddleName, setMiddleName] = useState("");
   const [LastName, setLastName] = useState("");
@@ -31,11 +33,26 @@ const RegIndividual = () => {
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
 
+  //address data
+  // const [Province, setProvince] = useState("");
+  // const [Municipality, setMunicipality] = useState("");
+  // const [Barangay, setBarangay] = useState("");
+  const [Zipcode, setZipcode] = useState("");
+  const [Purok, setPurok] = useState("");
+
   const { height } = useWindowDimensions();
 
   // Dropdown for Gender Selection
   const [openGender, setOpenGender] = useState(false);
   const [valueGender, setValueGender] = useState(null);
+
+  // Dropdown for Province Selection
+  const [openProvince, setOpenProvince] = useState(false);
+  const [valueProvince, setValueProvince] = useState(null);
+
+  // Dropdown for Barangay Selection
+  const [openBarangay, setOpenBarangay] = useState(false);
+  const [valueBarangay, setValueBarangay] = useState(null);
 
   // Dropdown for MONTH DOB
   const [openMonth, setOpenMonth] = useState(false);
@@ -65,6 +82,16 @@ const RegIndividual = () => {
   }));
 
   const yearOptions = Constants.DOB_YEAR.map((v) => ({
+    label: v,
+    value: v,
+  }));
+
+  const barangayOptions = Constants.ESTABLISHMENT_BARANGAY.map((v) => ({
+    label: v,
+    value: v,
+  }));
+
+  const provinceOptions = Constants.PROVINCE.map((v) => ({
     label: v,
     value: v,
   }));
@@ -117,6 +144,7 @@ const RegIndividual = () => {
             nextBtnTextStyle={styles.btnText}
             nextBtnStyle={styles.nxtBtn}
           >
+            <Text style={styles.h3}>Basic Information</Text>
             <CustomInput
               placeholder="First Name"
               value={FirstName}
@@ -207,17 +235,49 @@ const RegIndividual = () => {
               setValue={setPhoneNumber}
             />
 
-            <Text style={styles.h3}>Account Information</Text>
-            <CustomInput
-              placeholder="Email"
-              value={Email}
-              setValue={setEmail}
+            <Text style={styles.h3}>Complete Address</Text>
+
+            <DropDownPicker
+              placeholderStyle={{
+                color: "grey",
+                fontWeight: "bold",
+              }}
+              placeholder="Select Province"
+              searchable={true}
+              open={openProvince}
+              value={valueProvince}
+              items={provinceOptions}
+              setOpen={setOpenProvince}
+              setValue={setValueProvince}
+              listMode="SCROLLVIEW"
+              style={styles.dropDown}
+              closeAfterSelecting={true}
+            />
+            <DropDownPicker
+              placeholderStyle={{
+                color: "grey",
+                fontWeight: "bold",
+              }}
+              placeholder="Select Barangay"
+              searchable={true}
+              open={openBarangay}
+              value={valueBarangay}
+              items={barangayOptions}
+              setOpen={setOpenBarangay}
+              setValue={setValueBarangay}
+              listMode="SCROLLVIEW"
+              style={styles.dropDown}
+              closeAfterSelecting={true}
             />
             <CustomInput
-              placeholder="Password"
-              secureTextEntry={true}
-              value={Password}
-              setValue={setPassword}
+              placeholder="Purok or Street"
+              value={Purok}
+              setValue={setPurok}
+            />
+            <CustomNumberInput
+              placeholder="Zipcode"
+              value={Zipcode}
+              setValue={setZipcode}
             />
           </ProgressStep>
           <ProgressStep
@@ -262,7 +322,18 @@ const RegIndividual = () => {
             previousBtnTextStyle={styles.btnText}
             previousBtnStyle={styles.prevBtn}
           >
-            <Text>TBA</Text>
+            <Text style={styles.h3}>Account Information</Text>
+            <CustomInput
+              placeholder="Email"
+              value={Email}
+              setValue={setEmail}
+            />
+            <CustomInput
+              placeholder="Password"
+              secureTextEntry={true}
+              value={Password}
+              setValue={setPassword}
+            />
           </ProgressStep>
         </ProgressSteps>
       </View>
@@ -325,8 +396,9 @@ const styles = StyleSheet.create({
   },
 
   h3: {
-    fontSize: 16,
+    fontSize: 18,
     fontStyle: "italic",
+    fontWeight: "bold",
     marginTop: 20,
   },
 
