@@ -60,22 +60,23 @@ const FaceDetectScreen = () => {
     <ScrollView>
       <View style={styles.root}>
         <View style={styles.cameraContainer}>
-              <Camera ref={ref => setCamera(ref)}
-                style={styles.fixedRatio}
-                type={type}
-                ratio={'16:3'}
-              />
+          <Camera ref={ref => setCamera(ref)}
+            style={styles.fixedRatio}
+            type={type}
+            ratio={'16:3'}
+          />
 
-              <Button
-                style={styles.buttonStart}
-                title="Flip Camera"
-                onPress={() => {
-                  setType(type === Camera.Constants.Type.back ? Camera.Constants.Type.front : Camera.Constants.Type.back);
-                }}
-              />
+          <Button
+            style={styles.buttonStart}
+            title="Flip Camera"
+            onPress={() => {
+              setType(type === Camera.Constants.Type.back ? Camera.Constants.Type.front : Camera.Constants.Type.back);
+            }}
+          />
+          <Button title={'Take Picture'} />
 
-              {image && <Image source={{ uri: image }} style={{ flex: 1 }} />}
-            </View>
+          {image && <Image source={{ uri: image }} style={{ flex: 1 }} />}
+        </View>
       </View>
     </ScrollView>
   );
