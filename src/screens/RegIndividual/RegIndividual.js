@@ -54,6 +54,10 @@ const RegIndividual = () => {
   const [openBarangay, setOpenBarangay] = useState(false);
   const [valueBarangay, setValueBarangay] = useState(null);
 
+  // Dropdown for Barangay Selection
+  const [openMunicipality, setOpenMunicipality] = useState(false);
+  const [valueMunicipality, setValueMunicipality] = useState(null);
+
   // Dropdown for MONTH DOB
   const [openMonth, setOpenMonth] = useState(false);
   const [valueMonth, setValueMonth] = useState(null);
@@ -66,6 +70,8 @@ const RegIndividual = () => {
   const [openYear, setOpenYear] = useState(false);
   const [valueYear, setValueYear] = useState(null);
 
+
+  // Retrieval of Data from utils/Constants
   const monthOptions = Constants.DOB_MONTH.map((v) => ({
     label: v,
     value: v,
@@ -96,6 +102,14 @@ const RegIndividual = () => {
     value: v,
   }));
 
+  const municipalityOptions = Constants.MUNICIPALITY_DAVAO_DEL_SUR.map((v) => ({
+    label: v,
+    value: v,
+  }));
+
+  // End of Retrieval of Data from utils/Constants
+
+
   //Camera Instance
 
   const [hasCameraPermission, sethasCameraPermission] = useState(null);
@@ -123,6 +137,8 @@ const RegIndividual = () => {
     return <Text>No Camera Access</Text>;
   }
   //End of Camera Instance
+
+
 
 
 
@@ -252,7 +268,26 @@ const RegIndividual = () => {
               listMode="SCROLLVIEW"
               style={styles.dropDown}
               closeAfterSelecting={true}
+
             />
+
+            <DropDownPicker
+              placeholderStyle={{
+                color: "grey",
+                fontWeight: "bold",
+              }}
+              placeholder="Select Municipality"
+              searchable={true}
+              open={openMunicipality}
+              value={valueMunicipality}
+              items={municipalityOptions}
+              setOpen={setOpenMunicipality}
+              setValue={setValueMunicipality}
+              listMode="SCROLLVIEW"
+              style={styles.dropDown}
+              closeAfterSelecting={true}
+            />
+
             <DropDownPicker
               placeholderStyle={{
                 color: "grey",
@@ -278,6 +313,19 @@ const RegIndividual = () => {
               placeholder="Zipcode"
               value={Zipcode}
               setValue={setZipcode}
+            />
+
+            <Text style={styles.h3}>Account Information</Text>
+            <CustomInput
+              placeholder="Email"
+              value={Email}
+              setValue={setEmail}
+            />
+            <CustomInput
+              placeholder="Password"
+              secureTextEntry={true}
+              value={Password}
+              setValue={setPassword}
             />
           </ProgressStep>
           <ProgressStep
@@ -316,24 +364,13 @@ const RegIndividual = () => {
           </ProgressStep>
 
           <ProgressStep
-            label="Login details"
+            label="Vaccination Information"
             nextBtnTextStyle={styles.btnText}
             nextBtnStyle={styles.nxtBtn}
             previousBtnTextStyle={styles.btnText}
             previousBtnStyle={styles.prevBtn}
           >
-            <Text style={styles.h3}>Account Information</Text>
-            <CustomInput
-              placeholder="Email"
-              value={Email}
-              setValue={setEmail}
-            />
-            <CustomInput
-              placeholder="Password"
-              secureTextEntry={true}
-              value={Password}
-              setValue={setPassword}
-            />
+
           </ProgressStep>
         </ProgressSteps>
       </View>
@@ -346,7 +383,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 20,
     minHeight: 500,
-    marginBottom: 528,
+    marginBottom: 28,
   },
   logo: {
     marginTop: 40,

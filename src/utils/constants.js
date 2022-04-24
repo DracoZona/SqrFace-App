@@ -405,6 +405,20 @@ class Constants {
         "Compostella Valley",
     ]
 
+    static MUNICIPALITY_DAVAO_DEL_SUR = [
+        "Bansalan",
+        "Digos",
+        "Hagonoy",
+        "Kiblawan",
+        "Magsaysay",
+        "Malalag",
+        "Matanao",
+        "Padada",
+        "Santa Cruz",
+        "Sulop",
+
+    ]
+
 }
 
 
