@@ -7,22 +7,27 @@ import {
   ScrollView,
   TouchableOpacity,
   Button,
+  PermissionsAndroid,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { Camera } from "expo-camera";
 import * as Permissions from "expo-permissions";
-// import ReactNativeBlobUtil from 'react-native-blob-util'
-
+import axios from "axios";
 
 const FaceDetectScreen = () => {
   //Camera Instance
-
   const [hasCameraPermission, sethasCameraPermission] = useState(null);
   const [galleryPermission, setGalleryPermission] = useState(null);
   const [camera, setCamera] = useState(null);
   const [image, setImage] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [imageUri, setImageUri] = useState(null);
+  const [take, setTake] = useState(-1);
+
+  const [rect, setRect] = useState({ x: 0, y: 0, w: 0, h: 0 });
+
+  const [camerarect, setcameraRect] = useState({ x: 0, y: 0, w: 0, h: 0 });
+  
 
   useEffect(() => {
     (async () => {
@@ -44,41 +49,65 @@ const FaceDetectScreen = () => {
     })();
   }, []);
 
-
-  const ReactNativeBlobUtil = require('react-native-blob-util').default
-  
-  sendImg = () => {
-    ReactNativeBlobUtil.fetch(
-      "POST",
-      "http://127.0.0.1:5000/upload_file",
-      {
-        sendimage: JSON.stringify({
-          path: expoSnapped,
-          mode: "add",
-          autorename: true,
-          mute: false,
-        }),
-        "Content-Type": "application/json",
+  const sendImg = async (image) => {
+    const data = new FormData();
+    data.append("image", {
+      uri: image,
+      name: "facedetect.jpg",
+      type: "image/jpg",
+    });
+    data.append("test", "test");
+    const res = await axios({
+      method: "POST",
+      url: "http://192.168.1.12:5000/face_detect",
+      data,
+      headers: { "Content-Type": "multipart/form-data" },
+      transformRequest: () => {
+        return data;
       },
-      base64ImageString
-    )
-      .then((res) => {
-        console.log(res.text());
-      })
-      .catch((err) => {
-        // error handling ..
-      });
+    });
+    const temp = res.data.map((v) => parseInt(v, 10));
+    console.log(temp);
+
+    const factorx = camerarect.w / temp[5]
+    const factory = camerarect.h / temp[6]
+    const x = temp[0] * factorx - 100
+    const y = temp[1] * factory
+    const w = temp[3] * factorx
+    const h = temp[4] * factory
+    console.log(temp);
+    setRect({ x, y, w, h});
+    console.log(res.data);
   };
 
   const takePicture = async () => {
     if (camera) {
-      const data = await camera.takePictureAsync(null);
+      const data = await camera.takePictureAsync({
+        quality: 0.1,
+        skipProcessing: true
+      });
       console.log(data.uri);
       setImageUri(data.uri);
-      expoSnapped = data.uri;
-      sendImg();
+      sendImg(data.uri);
+
     }
   };
+
+  const delayedPic = () => {
+    takePicture()
+    setTimeout(() => {
+      setTake(prev => {
+        if(prev >= 0) return prev + 1
+        return prev;
+      })
+    }, 1000);
+  }
+
+  useEffect(() => {
+    if(take >= 0) {
+      delayedPic()
+    }
+  }, [take])
 
   if (hasCameraPermission === false) {
     return <Text>No Camera Access</Text>;
@@ -90,12 +119,31 @@ const FaceDetectScreen = () => {
     <ScrollView>
       <View style={styles.root}>
         <View style={styles.cameraContainer}>
+          <View
+            style={{
+              borderWidth: 4,
+              borderColor: "green",
+              position: "absolute",
+              top: rect.y,
+              left: rect.x,
+              width: rect.w,
+              height: rect.h,
+              zIndex: 100
+            }}
+          />
+          <View onLayout={event => {
+            const {x,y,width,height} = event.nativeEvent.layout
+            setcameraRect({x,y,w:width,h:height})
+          }}>
           <Camera
             ref={(ref) => setCamera(ref)}
             style={styles.fixedRatio}
             type={type}
             ratio={"16:3"}
+
+
           />
+          </View>
 
           <Button
             style={styles.buttonStart}
@@ -108,7 +156,16 @@ const FaceDetectScreen = () => {
               );
             }}
           />
-          <Button title={"Take Picture"} onPress={takePicture} />
+          <Button
+            style={styles.buttonStart}
+            title={take === -1 ? "Unpause" : "Pause"}
+            onPress={() => {
+              setTake(prev => 
+                prev === -1 ? 0 : -1
+              );
+            }}
+          />
+          {/* <Button title={"Take Picture"} onPress={takePicture} /> */}
           {imageUri && <Image source={{ uri: imageUri }} style={{ flex: 1 }} />}
         </View>
       </View>
@@ -128,6 +185,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     marginTop: 150,
+    position: "relative",
   },
 
   fixedRatio: {
