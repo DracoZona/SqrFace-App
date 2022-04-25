@@ -419,6 +419,13 @@ class Constants {
 
     ]
 
+    static VACCINE_STATUS = [
+        "Not Vaccinated",
+        "Semi-Vaccinated (1st dose only)",
+        "Fully Vaccinated",
+        "Full Vax with Booster",
+    ]
+
 }
 
 

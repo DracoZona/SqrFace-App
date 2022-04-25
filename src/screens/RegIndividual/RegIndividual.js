@@ -71,6 +71,20 @@ const RegIndividual = () => {
   const [valueYear, setValueYear] = useState(null);
 
 
+  //Third Paged of Progress Steps
+  const [VaccineStatus, setVaccineStatus] = useState("");
+  const [VaccineName, setVaccineName] = useState("");
+  const [BoosterName, setBoosterName] = useState("");
+
+  // Dropdown for First Dose Date
+  const [openFirstDoseDate, setOpenFisrtDoseDate] = useState(false);
+  const [valueFirstDoseDate, setValueFirstDoseDate] = useState(null);
+
+  // Dropdown for Second Dose Date
+  const [openSecondDoseDate, setOpenSecondDoseDate] = useState(false);
+  const [valueSecondDate, setOpenValueDoseDate] = useState(null);
+
+
   // Retrieval of Data from utils/Constants
   const monthOptions = Constants.DOB_MONTH.map((v) => ({
     label: v,
@@ -370,6 +384,14 @@ const RegIndividual = () => {
             previousBtnTextStyle={styles.btnText}
             previousBtnStyle={styles.prevBtn}
           >
+
+            <Text style={styles.h3}>Vaccine Status:</Text>
+            <CustomInput
+              placeholder="Vaccine Status"
+              value={VaccineStatus}
+              setValue={setVaccineStatus}
+            />
+
 
           </ProgressStep>
         </ProgressSteps>
