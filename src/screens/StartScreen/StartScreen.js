@@ -15,6 +15,7 @@ import CustomButton from "../../components/CustomButton";
 import Navigation from "../../navigation";
 import { useNavigation } from "@react-navigation/native";
 import { styleProps } from "react-native-web/dist/cjs/modules/forwardedProps";
+import SignInScreen from "../SignInScreen";
 
 const StartScreen = () => {
   const { height } = useWindowDimensions();
@@ -28,6 +29,10 @@ const StartScreen = () => {
   const FaceDetectScreen = () => {
     navigation.navigate("FaceDetectScreen"); // DEBUGGING U CAN DELETE THIS
   };
+  
+  const onSignInScreen = () => {
+    navigation.navigate("SignIn")
+  }
 
   return (
     <ScrollView>
@@ -43,7 +48,7 @@ const StartScreen = () => {
           <Text style={styles.buttonStartText}>Individual</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.buttonStart} onPress={FaceDetectScreen}>
+        <TouchableOpacity style={styles.buttonStart} onPress={onSignInScreen}>
           <Text style={styles.buttonStartText}>Establishment</Text>
         </TouchableOpacity>
 

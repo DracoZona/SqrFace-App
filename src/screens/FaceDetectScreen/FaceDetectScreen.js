@@ -13,6 +13,7 @@ import React, { useState, useEffect } from "react";
 import { Camera } from "expo-camera";
 import * as Permissions from "expo-permissions";
 import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
 
 const FaceDetectScreen = () => {
   //Camera Instance
@@ -27,6 +28,8 @@ const FaceDetectScreen = () => {
   const [rect, setRect] = useState({ x: 0, y: 0, w: 0, h: 0 });
 
   const [camerarect, setcameraRect] = useState({ x: 0, y: 0, w: 0, h: 0 });
+
+  const navigation = useNavigation();
   
 
   useEffect(() => {
@@ -36,7 +39,7 @@ const FaceDetectScreen = () => {
       sethasCameraPermission(cameraStatus.status === "granted");
       const imagePermission =
         await ImagePicker.getMediaLibraryPermissionsAsync();
-      console.log(imagePermission.status);
+      // console.log(imagePermission.status);
 
       setGalleryPermission(imagePermission.status === "granted");
 
@@ -77,7 +80,12 @@ const FaceDetectScreen = () => {
     const h = temp[4] * factory
     console.log(temp);
     setRect({ x, y, w, h});
-    console.log(res.data);
+    // console.log(res.data);
+
+    // if ((temp[2].toString()) == "von"){
+    //   navigation.navigate('CredentialScreen')
+    // }
+
   };
 
   const takePicture = async () => {
@@ -86,7 +94,7 @@ const FaceDetectScreen = () => {
         quality: 0.1,
         skipProcessing: true
       });
-      console.log(data.uri);
+      // console.log(data.uri);
       setImageUri(data.uri);
       sendImg(data.uri);
 
@@ -102,6 +110,9 @@ const FaceDetectScreen = () => {
       })
     }, 1000);
   }
+  const onCredentialScreen = () => {
+    navigation.navigate('CredentialScreen')
+  };
 
   useEffect(() => {
     if(take >= 0) {
@@ -167,6 +178,7 @@ const FaceDetectScreen = () => {
           />
           {/* <Button title={"Take Picture"} onPress={takePicture} /> */}
           {imageUri && <Image source={{ uri: imageUri }} style={{ flex: 1 }} />}
+        <Button title="next" onPress={onCredentialScreen} />
         </View>
       </View>
     </ScrollView>

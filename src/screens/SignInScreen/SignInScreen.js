@@ -24,7 +24,7 @@ const SignInScreen = () => {
   const onSignInPressed = () => {
     console.warn("Sign in");
 
-    navigation.navigate('SecondScreen') // DEBUGGING U CAN DELETE THIS
+    navigation.navigate('FaceDetectScreen') // DEBUGGING U CAN DELETE THIS
   };
   const onSignUpPressed = () => {
     console.warn("Sign Up");
