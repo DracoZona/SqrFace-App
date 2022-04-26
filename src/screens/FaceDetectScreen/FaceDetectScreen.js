@@ -85,6 +85,7 @@ const FaceDetectScreen = () => {
 
 
     if (res.data[2] == "von"){
+      setTake(-1)
       navigation.navigate('CredentialScreen')
     }
 
