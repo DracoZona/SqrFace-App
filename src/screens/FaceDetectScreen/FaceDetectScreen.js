@@ -80,14 +80,14 @@ const FaceDetectScreen = () => {
     const h = temp[4] * factory
     //console.log(temp);
     setRect({ x, y, w, h});
-    console.log(res.data);
+    // console.log(res.data);
     console.log(res.data[2])
 
 
-    if (res.data[2] == "von"){
-      setTake(-1)
-      navigation.navigate('CredentialScreen')
-    }
+    // if (res.data[2] == "von"){
+    //   setTake(-1)
+    //   navigation.navigate('CredentialScreen')
+    // }
 
   };
 
