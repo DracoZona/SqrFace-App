@@ -10,6 +10,7 @@ import RegIndividual from '../screens/RegIndividual';
 import RegEstablishment from '../screens/RegEstablishment';
 import FaceDetectScreen from '../screens/FaceDetectScreen';
 import CredentialScreen from '../screens/CredentialScreen';
+import LoginIndividual from '../screens/LoginIndividual';
 
 
 const Stack = createNativeStackNavigator();
@@ -25,7 +26,9 @@ const Navigation = () => {
             <Stack.Screen name="RegIndividual" component={RegIndividual} />
             <Stack.Screen name="RegEstablishment" component={RegEstablishment} />
             <Stack.Screen name="SignIn" component={SignInScreen} />
-            <Stack.Screen name="SecondScreen" component={SecondScreen} />
+            <Stack.Screen name="SecondScreen" component={SecondScreen} /> 
+            <Stack.Screen name="LoginIndividual" component={LoginIndividual} /> 
+            
         </Stack.Navigator>
     </NavigationContainer>
   )

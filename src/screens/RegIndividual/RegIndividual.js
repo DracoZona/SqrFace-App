@@ -72,18 +72,26 @@ const RegIndividual = () => {
 
 
   //Third Paged of Progress Steps
-  const [VaccineStatus, setVaccineStatus] = useState("");
+  
+  const [openVaccineStatus, setOpenVaccineStatus] = useState("");
+  const [valueVaccineStatus, setValueVaccineStatus] = useState("");
+
   const [VaccineName, setVaccineName] = useState("");
+ 
+
   const [BoosterName, setBoosterName] = useState("");
+  
 
-  // Dropdown for First Dose Date
-  const [openFirstDoseDate, setOpenFisrtDoseDate] = useState(false);
-  const [valueFirstDoseDate, setValueFirstDoseDate] = useState(null);
+  // Input for First Dose Date
+  const [firstDoseDate, setFisrtDoseDate] = useState(false);
+  
 
-  // Dropdown for Second Dose Date
-  const [openSecondDoseDate, setOpenSecondDoseDate] = useState(false);
-  const [valueSecondDate, setOpenValueDoseDate] = useState(null);
+  // Input for Second Dose Date
+  const [SecondDoseDate, setSecondDoseDate] = useState(false);
 
+
+  // Dropdown for Vaccine Status
+  
 
   // Retrieval of Data from utils/Constants
   const monthOptions = Constants.DOB_MONTH.map((v) => ({
@@ -120,6 +128,11 @@ const RegIndividual = () => {
     label: v,
     value: v,
   }));
+
+  const vaccinationStatusOptions = Constants.VACCINE_STATUS.map((v) =>({
+    label: v,
+    value: v,
+  }))
 
   // End of Retrieval of Data from utils/Constants
 
@@ -386,12 +399,52 @@ const RegIndividual = () => {
           >
 
             <Text style={styles.h3}>Vaccine Status:</Text>
-            <CustomInput
-              placeholder="Vaccine Status"
-              value={VaccineStatus}
-              setValue={setVaccineStatus}
+            <DropDownPicker
+              placeholderStyle={{
+                color: "grey",
+                fontWeight: "bold",
+              }}
+              placeholder="Vaccination Status"
+              searchable={false}
+              open={openVaccineStatus}
+              value={valueVaccineStatus}
+              items={vaccinationStatusOptions}
+              setOpen={setOpenVaccineStatus}
+              setValue={setValueVaccineStatus}
+              listMode="SCROLLVIEW"
+              style={styles.dropDown}
+              closeAfterSelecting={true}
             />
 
+            <CustomInput
+              placeholder="Vaccine Name"
+              value={VaccineName}
+              setValue={setVaccineName}
+            />
+
+            <CustomInput
+              placeholder="Booster Name (Optional)"
+              value={BoosterName}
+              setValue={setBoosterName}
+            />
+
+            <CustomNumberInput
+              placeholder="Date of 1st Dose: (MM-DD-YYYY)"
+              value={firstDoseDate}
+              setValue={setFisrtDoseDate}
+            />
+
+            <CustomNumberInput
+              placeholder="Date of 2nd Dose: (MM-DD-YYYY)"
+              value={SecondDoseDate}
+              setValue={setSecondDoseDate}
+            />
+
+            <CustomNumberInput
+              placeholder="Date of Booster Shot: (MM-DD-YYYY)"
+              value={SecondDoseDate}
+              setValue={setSecondDoseDate}
+            />  
 
           </ProgressStep>
         </ProgressSteps>

@@ -62,7 +62,7 @@ const FaceDetectScreen = () => {
     data.append("test", "test");
     const res = await axios({
       method: "POST",
-      url: "http://192.168.1.12:5000/face_detect",
+      url: "https://d362-2001-4455-1fa-7c00-796c-bbf3-6dce-1aad.ap.ngrok.io/face_detect",
       data,
       headers: { "Content-Type": "multipart/form-data" },
       transformRequest: () => {
@@ -111,7 +111,7 @@ const FaceDetectScreen = () => {
         if(prev >= 0) return prev + 1
         return prev;
       })
-    }, 1000);
+    }, 3000);
   }
   const onCredentialScreen = () => {
     navigation.navigate('CredentialScreen')

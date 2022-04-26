@@ -16,6 +16,7 @@ import Navigation from "../../navigation";
 import { useNavigation } from "@react-navigation/native";
 import { styleProps } from "react-native-web/dist/cjs/modules/forwardedProps";
 import SignInScreen from "../SignInScreen";
+import LoginIndividual from "../LoginIndividual/LoginIndividual";
 
 const StartScreen = () => {
   const { height } = useWindowDimensions();
@@ -34,6 +35,10 @@ const StartScreen = () => {
     navigation.navigate("SignIn")
   }
 
+  const LoginIndividualScreen = () => {
+    navigation.navigate("LoginIndividual")
+  };
+
   return (
     <ScrollView>
       <View style={styles.root}>
@@ -44,7 +49,7 @@ const StartScreen = () => {
         />
 
         <Text style={styles.h1}>Login as</Text>
-        <TouchableOpacity style={styles.buttonStart}>
+        <TouchableOpacity style={styles.buttonStart} onPress={LoginIndividualScreen}>
           <Text style={styles.buttonStartText}>Individual</Text>
         </TouchableOpacity>
 
