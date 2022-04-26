@@ -70,7 +70,7 @@ const FaceDetectScreen = () => {
       },
     });
     const temp = res.data.map((v) => parseInt(v, 10));
-    console.log(temp);
+    //console.log(temp);
 
     const factorx = camerarect.w / temp[5]
     const factory = camerarect.h / temp[6]
@@ -78,13 +78,15 @@ const FaceDetectScreen = () => {
     const y = temp[1] * factory
     const w = temp[3] * factorx
     const h = temp[4] * factory
-    console.log(temp);
+    //console.log(temp);
     setRect({ x, y, w, h});
-    // console.log(res.data);
+    console.log(res.data);
+    console.log(res.data[2])
 
-    // if ((temp[2].toString()) == "von"){
-    //   navigation.navigate('CredentialScreen')
-    // }
+
+    if (res.data[2] == "von"){
+      navigation.navigate('CredentialScreen')
+    }
 
   };
 
