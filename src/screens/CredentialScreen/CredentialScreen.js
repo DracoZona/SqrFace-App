@@ -1,17 +1,31 @@
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import React from "react";
-import database from "@react-native-firebase/database"
+import { db } from '../../../firebase'
+import * as firebasedb from "firebase/database";
+
+
 
 
 const CredentialScreen = () => {
 
+  const [name, setName] = React.useState();
+
+  React.useEffect( () => {
+    console.log(firebasedb.default)
+    const reference = firebasedb.ref(db, 'User/Name');
+    firebasedb.onValue(reference, (snapshot) => {
+      setName(snapshot.val())
+    });
+  })
+
+  
 
   return (
     <ScrollView>
       <View style={styles.root}>
         <View>
           <Text>User Credential</Text>
-          <Text>Name:</Text>
+          <Text>Name:{name}</Text>
           <Text>Gender:</Text>
           <Text>Birthdate:</Text>
           <Text>Primary Mobile No.:</Text>
