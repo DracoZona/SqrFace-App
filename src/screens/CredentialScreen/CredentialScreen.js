@@ -13,7 +13,7 @@ const CredentialScreen = () => {
 
   const navigation = useNavigation();
   const onStartScreen = () => {
-    navigation.navigate("StartScreen")
+    navigation.navigate("FaceDetectScreen")
   }
 
   const currentUser = 1;

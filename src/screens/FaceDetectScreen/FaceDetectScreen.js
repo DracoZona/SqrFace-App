@@ -30,7 +30,7 @@ const FaceDetectScreen = () => {
   const [camerarect, setcameraRect] = useState({ x: 0, y: 0, w: 0, h: 0 });
 
   const navigation = useNavigation();
-  
+
 
   useEffect(() => {
     (async () => {
@@ -79,7 +79,7 @@ const FaceDetectScreen = () => {
     const w = temp[3] * factorx
     const h = temp[4] * factory
     //console.log(temp);
-    setRect({ x, y, w, h});
+    setRect({ x, y, w, h });
     // console.log(res.data);
     console.log(res.data[2])
 
@@ -108,7 +108,7 @@ const FaceDetectScreen = () => {
     takePicture()
     setTimeout(() => {
       setTake(prev => {
-        if(prev >= 0) return prev + 1
+        if (prev >= 0) return prev + 1
         return prev;
       })
     }, 3000);
@@ -118,7 +118,7 @@ const FaceDetectScreen = () => {
   };
 
   useEffect(() => {
-    if(take >= 0) {
+    if (take >= 0) {
       delayedPic()
     }
   }, [take])
@@ -146,17 +146,17 @@ const FaceDetectScreen = () => {
             }}
           />
           <View onLayout={event => {
-            const {x,y,width,height} = event.nativeEvent.layout
-            setcameraRect({x,y,w:width,h:height})
+            const { x, y, width, height } = event.nativeEvent.layout
+            setcameraRect({ x, y, w: width, h: height })
           }}>
-          <Camera
-            ref={(ref) => setCamera(ref)}
-            style={styles.fixedRatio}
-            type={type}
-            ratio={"16:3"}
+            <Camera
+              ref={(ref) => setCamera(ref)}
+              style={styles.fixedRatio}
+              type={type}
+              ratio={"16:3"}
 
 
-          />
+            />
           </View>
 
           <Button
@@ -174,14 +174,14 @@ const FaceDetectScreen = () => {
             style={styles.buttonStart}
             title={take === -1 ? "Unpause" : "Pause"}
             onPress={() => {
-              setTake(prev => 
+              setTake(prev =>
                 prev === -1 ? 0 : -1
               );
             }}
           />
           {/* <Button title={"Take Picture"} onPress={takePicture} /> */}
           {imageUri && <Image source={{ uri: imageUri }} style={{ flex: 1 }} />}
-        <Button title="next" onPress={onCredentialScreen} />
+          <Button title="next" onPress={onCredentialScreen} />
         </View>
       </View>
     </ScrollView>
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 20,
     minHeight: 500,
-    marginBottom: 528,
+    marginBottom: 28,
   },
   cameraContainer: {
     width: "100%",

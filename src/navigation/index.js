@@ -18,18 +18,18 @@ const Stack = createNativeStackNavigator();
 const Navigation = () => {
   return (
     <NavigationContainer>
-        <Stack.Navigator initialRouteName='CredentialScreen' screenOptions={{headerShown: false}}>
-            <Stack.Screen name="StartScreen" component={StartScreen} />
-            <Stack.Screen name ="FaceDetectScreen" component={FaceDetectScreen}/>
-            <Stack.Screen name ="CredentialScreen" component={CredentialScreen}/>
-            <Stack.Screen name="RegistrationMenu" component={RegistrationMenu} />
-            <Stack.Screen name="RegIndividual" component={RegIndividual} />
-            <Stack.Screen name="RegEstablishment" component={RegEstablishment} />
-            <Stack.Screen name="SignIn" component={SignInScreen} />
-            <Stack.Screen name="SecondScreen" component={SecondScreen} /> 
-            <Stack.Screen name="LoginIndividual" component={LoginIndividual} /> 
-            
-        </Stack.Navigator>
+      <Stack.Navigator initialRouteName='StartScreen' screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="StartScreen" component={StartScreen} />
+        <Stack.Screen name="FaceDetectScreen" component={FaceDetectScreen} />
+        <Stack.Screen name="CredentialScreen" component={CredentialScreen} />
+        <Stack.Screen name="RegistrationMenu" component={RegistrationMenu} />
+        <Stack.Screen name="RegIndividual" component={RegIndividual} />
+        <Stack.Screen name="RegEstablishment" component={RegEstablishment} />
+        <Stack.Screen name="SignIn" component={SignInScreen} />
+        <Stack.Screen name="SecondScreen" component={SecondScreen} />
+        <Stack.Screen name="LoginIndividual" component={LoginIndividual} />
+
+      </Stack.Navigator>
     </NavigationContainer>
   )
 }
