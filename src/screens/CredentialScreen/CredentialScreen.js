@@ -1,22 +1,28 @@
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Image,  } from "react-native";
 import React from "react";
-import { db } from '../../../firebase'
-import * as firebasedb from "firebase/database";
+import { refs } from '../../../firebase'
 
 
 
 
 const CredentialScreen = () => {
-
-  const [name, setName] = React.useState();
+  const currentUser = 1;
+  const [user, setUser] = React.useState({})
+  const [image, setImage] = React.useState();
 
   React.useEffect( () => {
-    console.log(firebasedb.default)
-    const reference = firebasedb.ref(db, 'User/Name');
-    firebasedb.onValue(reference, (snapshot) => {
-      setName(snapshot.val())
+    refs.db.on('value', (snapshot) => {
+      const val = snapshot.val()
+      const user = val.User[currentUser]
+      if(user){
+        setUser(user)
+        console.log(user)
+        if(user.Image) {
+          refs.storage.child(user.Image).getDownloadURL().then(v => setImage(v)).catch(console.error)
+        }
+      }
     });
-  })
+  }, [])
 
   
 
@@ -24,8 +30,9 @@ const CredentialScreen = () => {
     <ScrollView>
       <View style={styles.root}>
         <View>
+          <Image style={{width: 100, height: 100}} source={{uri: image}} />
           <Text>User Credential</Text>
-          <Text>Name:{name}</Text>
+          <Text>Name:{user["Name"]}</Text>
           <Text>Gender:</Text>
           <Text>Birthdate:</Text>
           <Text>Primary Mobile No.:</Text>

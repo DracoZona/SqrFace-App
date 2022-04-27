@@ -18,7 +18,7 @@ const Stack = createNativeStackNavigator();
 const Navigation = () => {
   return (
     <NavigationContainer>
-        <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Navigator initialRouteName='CredentialScreen' screenOptions={{headerShown: false}}>
             <Stack.Screen name="StartScreen" component={StartScreen} />
             <Stack.Screen name ="FaceDetectScreen" component={FaceDetectScreen}/>
             <Stack.Screen name ="CredentialScreen" component={CredentialScreen}/>

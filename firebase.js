@@ -1,5 +1,5 @@
 // Import the functions you need from the SDKs you need
-import * as firebase from "firebase";
+import firebase from "firebase";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -9,6 +9,8 @@ import * as firebase from "firebase";
 const firebaseConfig = {
   apiKey: "AIzaSyB7j33E1O2i35fKt9lfEUwXqEM-imJcBNI",
   authDomain: "sqrface-1b85e.firebaseapp.com",
+  databaseURL: "https://sqrface-1b85e-default-rtdb.asia-southeast1.firebasedatabase.app", 
+  storageURL: "gs://sqrface-1b85e.appspot.com",
   projectId: "sqrface-1b85e",
   storageBucket: "sqrface-1b85e.appspot.com",
   messagingSenderId: "912145851533",
@@ -25,6 +27,12 @@ if (firebase.apps.length === 0) {
 }
 
 const auth = firebase.auth()
-const db = firebase.database(app)
+const db = firebase.database()
+const storage = firebase.storage()
+const refs = {
+  db: db.ref(),
+  storage: storage.ref()
+}
 
-export { auth, db };
+
+export { auth, db, refs };
