@@ -37,7 +37,7 @@ const LoginIndividual = () => {
           style={[styles.logo, { height: height * 0.3 }]}
           resizeMode="contain"
         />
-
+        <Text style={styles.h1}>User Login</Text>
         <CustomInput
           placeholder="Username"
           value={username}
@@ -72,6 +72,13 @@ const styles = StyleSheet.create({
     maxWidth: 400,
     maxHeight: 400,
   },
+
+  h1: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    paddingTop: 10,
+  }
 });
 
 export default LoginIndividual;
