@@ -10,6 +10,8 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-native-firebase/app": "^14.9.0",
+    "@react-native-firebase/database": "^14.9.0",
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.5.1",
     "axios": "^0.26.1",
