@@ -2,21 +2,20 @@ import { View, Text, StyleSheet, ScrollView, Image, Button } from "react-native"
 import React from "react";
 import { refs } from '../../../firebase'
 import { useNavigation } from "@react-navigation/native";
-import CustomInput from "../../components/CustomInput";
-import { TouchableOpacity } from "react-native-web";
 
 
 
 
-const CredentialScreen = () => {
-
+const CredentialScreen = (xvalue) => {
+  console.log(xvalue.route.params.xvalue)
 
   const navigation = useNavigation();
   const onStartScreen = () => {
     navigation.navigate("FaceDetectScreen")
   }
+  
 
-  const currentUser = 1;
+  const currentUser = xvalue.route.params.xvalue;
   const [user, setUser] = React.useState({})
   const [image, setImage] = React.useState();
 

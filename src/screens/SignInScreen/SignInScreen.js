@@ -5,27 +5,48 @@ import {
   StyleSheet,
   useWindowDimensions,
   ScrollView,
+  Alert
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
 import Logo from "../../../assets/images/Logo_1.png";
 import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
 import Navigation from "../../navigation";
 import { useNavigation } from "@react-navigation/native";
+import { auth } from "../../../firebase";
+
 
 const SignInScreen = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const { height } = useWindowDimensions();
 
   const navigation = useNavigation();
 
-  const onSignInPressed = () => {
-    console.warn("Sign in");
 
-    navigation.navigate('FaceDetectScreen') // DEBUGGING U CAN DELETE THIS
-  };
+  // useEffect(() => {
+  //   const unsubscribe = auth.onAuthStateChanged(user =>{
+  //     if(user){
+  //       console.log(user)
+  //       // navigation.navigate('FaceDetectScreen')
+  //     }
+  //   })
+  //   return unsubscribe
+
+  // }, [])
+
+  const onSignInPressed = () => {
+    auth
+    .signInWithEmailAndPassword(email, password)
+    .then(userCredentials => {
+      const user = userCredentials.user;
+      console.log('Logged in with:', user.email);
+      navigation.navigate('FaceDetectScreen')
+    })
+    .catch(error => alert(error.message))
+ }
+
   const onSignUpPressed = () => {
     console.warn("Sign Up");
   };
@@ -40,9 +61,9 @@ const SignInScreen = () => {
         />
         <Text style={styles.h1}>Establishment Login</Text>
         <CustomInput
-          placeholder="Username"
-          value={username}
-          setValue={setUsername}
+          placeholder="Email"
+          value={email}
+          setValue={setEmail}
         />
 
         <CustomInput
@@ -69,7 +90,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   logo: {
-    width: "70%",
+    width: "100%",
     maxWidth: 400,
     maxHeight: 400,
   },

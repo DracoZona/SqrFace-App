@@ -15,7 +15,9 @@ import * as Permissions from "expo-permissions";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 
+
 const FaceDetectScreen = () => {
+
   //Camera Instance
   const [hasCameraPermission, sethasCameraPermission] = useState(null);
   const [galleryPermission, setGalleryPermission] = useState(null);
@@ -62,7 +64,7 @@ const FaceDetectScreen = () => {
     data.append("test", "test");
     const res = await axios({
       method: "POST",
-      url: "https://d362-2001-4455-1fa-7c00-796c-bbf3-6dce-1aad.ap.ngrok.io/face_detect",
+      url: "http://192.168.1.12:5000/face_detect",
       data,
       headers: { "Content-Type": "multipart/form-data" },
       transformRequest: () => {
@@ -84,10 +86,13 @@ const FaceDetectScreen = () => {
     console.log(res.data[2])
 
 
-    // if (res.data[2] == "von"){
-    //   setTake(-1)
-    //   navigation.navigate('CredentialScreen')
-    // }
+    if (res.data[2] == "kenneth"){
+      setTake(-1)
+      navigation.navigate('CredentialScreen', {xvalue: 1})
+    } else if (res.data[2] == "jasper"){
+      setTake(-1)
+      navigation.navigate('CredentialScreen', {xvalue: 0})
+    }
 
   };
 
@@ -111,10 +116,10 @@ const FaceDetectScreen = () => {
         if (prev >= 0) return prev + 1
         return prev;
       })
-    }, 3000);
+    }, 1000);
   }
   const onCredentialScreen = () => {
-    navigation.navigate('CredentialScreen')
+    navigation.navigate('CredentialScreen', {xvalue: 0})
   };
 
   useEffect(() => {
@@ -172,7 +177,7 @@ const FaceDetectScreen = () => {
           />
           <Button
             style={styles.buttonStart}
-            title={take === -1 ? "Unpause" : "Pause"}
+            title={take === -1 ? "Scan" : "Stop"}
             onPress={() => {
               setTake(prev =>
                 prev === -1 ? 0 : -1
@@ -181,7 +186,7 @@ const FaceDetectScreen = () => {
           />
           {/* <Button title={"Take Picture"} onPress={takePicture} /> */}
           {imageUri && <Image source={{ uri: imageUri }} style={{ flex: 1 }} />}
-          <Button title="next" onPress={onCredentialScreen} />
+          {/* <Button title="next" onPress={onCredentialScreen} /> */}
         </View>
       </View>
     </ScrollView>
