@@ -1,11 +1,19 @@
-import { View, Text, StyleSheet, ScrollView, Image,  } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Image, Button } from "react-native";
 import React from "react";
 import { refs } from '../../../firebase'
+import { useNavigation } from "@react-navigation/native";
 
 
 
 
 const CredentialScreen = () => {
+
+
+  const navigation = useNavigation();
+  const onStartScreen = () =>{
+    navigation.navigate("StartScreen")
+  }
+
   const currentUser = 1;
   const [user, setUser] = React.useState({})
   const [image, setImage] = React.useState();
@@ -30,6 +38,7 @@ const CredentialScreen = () => {
     <ScrollView>
       <View style={styles.root}>
         <View>
+        
           
           <Text>User Credential</Text>
           <Text>Name: {user["Name"]}</Text>
@@ -54,7 +63,13 @@ const CredentialScreen = () => {
           <Text>User's Qr Code</Text>
           <Image style={{width: 300, height: 500}} source={{uri: image}} />
         </View>
+        <Button
+            style={styles.buttonStart}
+            title="Back Button"
+            onPress={onStartScreen}
+          />
       </View>
+      
     </ScrollView>
   );
 };
